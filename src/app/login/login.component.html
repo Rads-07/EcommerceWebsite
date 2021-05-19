@@ -1,0 +1,51 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        [class.is-invalid]="username && username.invalid && username.touched"            
+                        formControlName = "username"
+                        id="username" 
+                        type="text" 
+                        class="form-control">
+            
+                    <div *ngIf="username?.pending">Checking for uniqueness...</div>
+            
+                    <!--<small [class.d-none]="username && (username.valid || username.untouched)"class="class-danger">Username is required</small> -->
+                    <div *ngIf=" username && username.invalid && username.touched" class="alert alert-danger" >
+                        <small *ngIf="username.errors?.required" class="text-danger">username is required </small>
+                        <small *ngIf="username.errors?.minlength" class="text-danger">username should be {{username?.errors?.minlength.requiredLength}} characters </small>
+                        <small *ngIf="username.errors?.cannotContainSpace" class="text-danger">username  cannot contain space</small>
+                        <small *ngIf="username.errors?.mustBeUnique" class="text-danger">username is not allowed</small>
+                    </div>
+            
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        formControlName = "password" 
+                        id="password" 
+                        type="password" 
+                        class="form-control">
+                </div>
+
+    
+                <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Login</button>
+            </form>
+
+            <div class="alert alert-success" role="alert" *ngIf="showSuccessMessage">
+                Log in Successfully!
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="serverErrorMessage">
+                {{serverErrorMessage}}
+            </div>
+            
+            
+        </div>
+    </div>
+</div>

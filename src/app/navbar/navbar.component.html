@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/">
+            <i class="fa fa-leaf" aria-hidden="true"></i>
+        </a>
+    <button class="navbar-toggler"  type="button" data-toggle = "collapse" data-target="#navbarSupportedContent" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+        <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item ">
+                <a class="nav-link"  routerLink="/shopping-cart">
+                   <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
+                    <span class="badge badge-warning badge-pill">
+                        {{getCartItemsCount()}}
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+
+        <ul class="navbar-nav" style="padding-right:80px;">
+
+            <li class="nav-item" *ngIf="!userService.isLoggedIn">
+                <a class="nav-link"  routerLink="/login">Login<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item"  *ngIf="!userService.isLoggedIn"  >
+                <a class="nav-link"routerLink="/register">Register<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li ngbDropdown *ngIf="userService.isLoggedIn" class="nav-item dropdown"  >
+                <a ngbDropdownToggle class="nav-link dropdown-toggle"id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{username}}
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu " aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/my-orders">My Orders</a>
+                    <a class="dropdown-item" *ngIf="userService.isAdmin" routerLink="/admin/orders">Manage Orders</a>
+                    <a class="dropdown-item" *ngIf="userService.isAdmin" routerLink="/admin/products">Manage Products</a>
+                    <a class="dropdown-item" (click)="logout()">Log Out</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    </div>
+</nav>

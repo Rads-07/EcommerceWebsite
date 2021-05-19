@@ -1,0 +1,100 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        [class.is-invalid]="username && username.invalid && username.touched"            
+                        formControlName = "username"
+                        id="username" 
+                        type="text" 
+                        class="form-control">
+            
+                    <div *ngIf="username?.pending">Checking for uniqueness...</div>
+            
+                
+                    <div *ngIf=" username && username.invalid && username.touched" class="alert alert-danger" >
+                        <small *ngIf="username.errors?.required" class="text-danger">username is required </small>
+                        <small *ngIf="username.errors?.minlength" class="text-danger">username should be {{username?.errors?.minlength.requiredLength}} characters </small>
+                        <small *ngIf="username.errors?.cannotContainSpace" class="text-danger">username  cannot contain space</small>
+                        <small *ngIf="username.errors?.mustBeUnique" class="text-danger">username is not allowed</small>
+                    </div>
+            
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname">firstname</label>
+                    <input
+                        formControlName = "firstName" 
+                        id="firstname" 
+                        type="text" 
+                        class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">lastname</label>
+                    <input
+                        formControlName = "lastName" 
+                        id="lastname" 
+                        type="text" 
+                        class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailId">emailId</label>
+                    <input
+                        formControlName = "emailId" 
+                        id="emailId" 
+                        type="email" 
+                        class="form-control">
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="dateOfBirth">dateOfBirth</label>
+                    <input
+                        formControlName = "dateOfBirth" 
+                        id="dateOfBirth" 
+                        type="text" 
+                        class="form-control">
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="mobileNo">mobileNo</label>
+                    <input
+                        formControlName = "mobileNo" 
+                        id="mobileNo" 
+                        type="text" 
+                        class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password">password</label>
+                    <input
+                        formControlName = "password" 
+                        id="password" 
+                        type="password" 
+                        class="form-control">
+                </div>
+
+    
+                <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Register</button>
+            
+            </form>
+   
+            <div class="alert alert-success" role="alert" *ngIf="showSuccessMessage">
+                Saved Successfully
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="serverErrorMessage">
+                {{serverErrorMessage}}
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- <br>
+<button class="btn btn-secondary" (click)="getOrders()">Get Orders</button> 
+<button class="btn btn-secondary" (click)="myOrders()">Get Orders</button> -->
+<br>
+<br>
+<div class="row col-10">
+    <table class="table">
+        <thead>
+            <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{order.name}}</td>
+                <td>{{order.orderDate}}</td>
+                <td> 
+                    <button class="btn btn-secondary" (click)="onView(order.orderItems)">
+                            View
+                    </button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+

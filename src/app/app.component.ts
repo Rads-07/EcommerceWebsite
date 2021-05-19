@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
+import { User } from './model/user.model';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'EcommerceWebsite';
+  title = 'Organic-Shop';
+  constructor(private userService:UserService){
+    
+  }
 }
+

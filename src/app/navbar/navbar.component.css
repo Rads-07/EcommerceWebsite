@@ -1,0 +1,6 @@
+.dropdown-toggle{
+    cursor:pointer;
+}
+.navbar .navbar-expand {
+    height: 155px !important; 
+}

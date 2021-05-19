@@ -1,0 +1,109 @@
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+
+            <form [formGroup]="form" (ngSubmit)="save(form.value)">
+
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input
+                        [(ngModel)] ="product.productName"
+                        formControlName = "productName" 
+                        id="title" 
+                        type="text" 
+                        class="form-control"
+                        [class.is-invalid]="title?.invalid && title?.touched">
+                    <small [class.d-none]="title?.valid || title?.untouched"class="text-danger">title is required</small>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="price">Price</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">₹</span>
+                            <input 
+                            [(ngModel)] ="product.price"
+                            formControlName = "price"
+                            id="price" 
+                            type="number"
+                            class="form-control">
+                        </div>
+                    </div> 
+                </div>
+
+                
+                <div class="form-group">
+
+                    <label for="productDescription">Description</label>
+                    <input 
+                        [(ngModel)] ="product.productDescription"
+                        id ="productDescription"
+                        formControlName="productDescription" 
+                        type="text" 
+                        class="form-control">
+                </div> 
+
+                <div class="form-group">
+
+                    <label for="stockAvailable">StockAvailable</label>
+                    <input 
+                        id = "stockAvailable"
+                        [(ngModel)] ="product.stockAvailable"
+                        formControlName="stockAvailable" 
+                        type="number" 
+                        class="form-control">
+                </div> 
+
+                <div class="form-group">
+
+                    <label for="image">Image Url</label>
+                    <input 
+                        id ="image"
+                        [(ngModel)] ="product.image"
+                        formControlName ="image" 
+                        type="imageURL" 
+                        class="form-control"
+                        url>
+                </div>
+
+                <form formGroupName="category">
+                    <div class="form-group">
+
+                    <label for="categoryId">Category</label>
+                    <select
+                        [(ngModel)] ="product.category.categoryId"
+                        formControlName = "categoryId"
+                        name="categoryId" 
+                        class="form-control"      
+                    >
+                  
+                    <option *ngFor="let c of categories" value={{c.categoryId}}>{{c.categoryName}}  </option> 
+                    </select>
+                    </div>
+                </form>
+
+                <button class="btn btn-primary mr-2" [disabled]="form.invalid">Save</button>
+                <button type="button" type="button" (click)="delete()"  class="btn btn-danger">Delete</button>
+            </form>
+
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <product-card [product]="product" [show-actions]="false"></product-card>
+<!-- 
+            <div *ngIf="product.productName" class="card" style="width: 26rem;">
+                <img [src]="image?.value" class="card-img-top" >
+                <div class="card-body">
+                  <h5 class="card-title">{{title?.value}}</h5>
+                  <p class="card-text">{{description?.value}}</p>
+                  <p class="card-text"> {{price?.value | currency:"INR":"symbol"}}   </p>
+                </div>
+              </div>
+ -->
+        </div>
+
+    </div>
+</div> 
