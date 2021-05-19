@@ -66,6 +66,8 @@ export class UserService {
 
   logout(){
     localStorage.removeItem("access_token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("role");
   }
 
   handleError(error:HttpErrorResponse){

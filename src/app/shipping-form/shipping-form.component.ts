@@ -46,8 +46,9 @@ export class ShippingFormComponent implements OnInit {
     this.checkoutService.placeOrder(order, this.items, new Date()).pipe(take(1)).subscribe((id:any)=>{
         this.orderId = parseInt(id);
     });
+    
     console.log("order placed");
-    this.router.navigate(['/order-success',this.orderId]);
+    this.router.navigate(['/order-success',this.orderId=0]);
   }
   
   totalPriceOfCartItems(products:any[]):number{
