@@ -1,4 +1,5 @@
 # EcommerceWebsite
+A simple organic shop ecommerce website is developed for purchasing products. A user can add any number of products to his/her cart and login/register for placing an order. If logged in as admin, user can also manage products and orders along with getting all orders.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
